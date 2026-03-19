@@ -158,13 +158,13 @@ PanTiltCamera::on_configure(const rclcpp_lifecycle::State &)
     return rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::FAILURE;
   }
 
-  image_pub_ = this->create_publisher<sensor_msgs::msg::Image>(topic.c_str(), 100);
+  image_pub_ = this->create_publisher<sensor_msgs::msg::Image>(topic.c_str(), 10);
   compressed_image_pub_ =
-      this->create_publisher<sensor_msgs::msg::Image>(compressed_topic.c_str(), 100);
+      this->create_publisher<sensor_msgs::msg::Image>(compressed_topic.c_str(), 10);
   camera_info_pub_ =
-      this->create_publisher<sensor_msgs::msg::CameraInfo>(camera_info_topic.c_str(), 100);
+      this->create_publisher<sensor_msgs::msg::CameraInfo>(camera_info_topic.c_str(), 10);
   compressed_camera_info_pub_ =
-      this->create_publisher<sensor_msgs::msg::CameraInfo>(compressed_camera_info_topic.c_str(), 100);
+      this->create_publisher<sensor_msgs::msg::CameraInfo>(compressed_camera_info_topic.c_str(), 10);
   pan_tilt_status_pub_ = this->create_publisher<vision_tune::msg::PanTiltStatusMsgs>(
       pan_tilt_status_topic.c_str(), 1);
   pan_tilt_sub_ = this->create_subscription<vision_tune::msg::PanTiltMsgs>(
@@ -195,7 +195,7 @@ PanTiltCamera::on_activate(const rclcpp_lifecycle::State &)
   pan_tilt_status_pub_->on_activate();
 
   timer_ = this->create_wall_timer(std::chrono::milliseconds(1000 / (int)fps), [this]()
-                                  {
+                                   {
     if (camera_ && camera_->streaming) {
       cv::Mat frame = camera_->m_image;
       std_msgs::msg::Header header;
@@ -487,10 +487,16 @@ rcl_interfaces::msg::SetParametersResult PanTiltCamera::on_parameter_change(
 
 void PanTiltCamera::pan_tilt_callback(const vision_tune::msg::PanTiltMsgs::SharedPtr msg)
 {
-  set_param("pan", msg->pan);
-  set_param("tilt", msg->tilt);
-  pan = msg->pan;
-  tilt = msg->tilt;
+  if (msg->pan != pan)
+  {
+    set_param("pan", msg->pan);
+    pan = msg->pan;
+  }
+  if (msg->tilt != tilt)
+  {
+    set_param("tilt", msg->tilt);
+    tilt = msg->tilt;
+  }
 }
 
 void PanTiltCamera::get_param()

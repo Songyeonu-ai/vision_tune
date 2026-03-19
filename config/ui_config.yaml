@@ -34,12 +34,16 @@ ui_node:
 process_node:
   ros__parameters:
     topic:
-      input_topic: "/camera1/camera/image_raw"
+      input_topic: "/camera1/camera/compressed_image"
       result_topic: "/vision/result"
       result_image_topic: "/vision/result_image"
       tuning_topic: "/vision/tuning"
       brid_image_topic: "/vision/bird_image"
     node_hz: 30.0
+    img_w: 640
+    img_h: 480
+    bird_img_w: 320
+    bird_img_h: 240
 
 pan_tilt_camera_node_camera1: #d만들어뒀는데 지금은 안쓰는중
   ros__parameters:

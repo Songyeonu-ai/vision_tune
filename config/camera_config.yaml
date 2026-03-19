@@ -7,7 +7,7 @@
     device: "/dev/video2"
     frame_id: "camera"
     resolution: "1280x960"
-    fps: 15.0
+    fps: 30.0
     format: "MJPEG"
     brightness: -1
     contrast: -1

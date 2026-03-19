@@ -21,6 +21,7 @@ namespace vision_tune::utils
   cv::Mat make_bird_view(
       const cv::Mat &frame,
       const std::vector<cv::Point2f> &src_points,
+      const std::vector<cv::Point2f> &dst_points,
       int output_width,
       int output_height);
 

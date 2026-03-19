@@ -58,7 +58,7 @@ void ProcessNode::get_parameters()
 
 void ProcessNode::tuning_callback(const vision_tune::msg::TuningValue::SharedPtr msg)
 { // ui에서 hsv값이 변경될 때마다 업데이트
-  RCLCPP_INFO(this->get_logger(), "tuning_callback called");
+  //RCLCPP_INFO(this->get_logger(), "tuning_callback called");
   std::lock_guard<std::mutex> lock(data_mutex_);
 
   hsv_config_.red.h_low = msg->red_h_low;
@@ -88,7 +88,7 @@ void ProcessNode::tuning_callback(const vision_tune::msg::TuningValue::SharedPtr
 
 void ProcessNode::image_callback(const sensor_msgs::msg::Image::SharedPtr msg)
 { // 버퍼에 저장만하고 실제 처리는 process_tick
-  RCLCPP_INFO(this->get_logger(), "image_callback called");
+  //RCLCPP_INFO(this->get_logger(), "image_callback called");
   try
   {
     cv::Mat frame = cv_bridge::toCvCopy(msg, "bgr8")->image;
@@ -105,7 +105,7 @@ void ProcessNode::image_callback(const sensor_msgs::msg::Image::SharedPtr msg)
 
 void ProcessNode::process_tick()
 {
-  RCLCPP_INFO(this->get_logger(), "process_tick called");
+  // RCLCPP_INFO(this->get_logger(), "process_tick called");
 
   cv::Mat raw_mat;
   vision_tune::utils::hsv_config cfg;
@@ -116,12 +116,12 @@ void ProcessNode::process_tick()
 
     if ((!raw_dirty_ && !tuning_dirty_) || latest_raw_mat_.empty())
     {
-      RCLCPP_WARN(
-          this->get_logger(),
-          "process_tick return: raw_dirty=%d tuning_dirty=%d empty=%d",
-          raw_dirty_,
-          tuning_dirty_,
-          latest_raw_mat_.empty());
+      // RCLCPP_WARN(
+      //     this->get_logger(),
+      //     "process_tick return: raw_dirty=%d tuning_dirty=%d empty=%d",
+      //     raw_dirty_,
+      //     tuning_dirty_,
+      //     latest_raw_mat_.empty());
       return;
     }
 
@@ -134,12 +134,18 @@ void ProcessNode::process_tick()
 
   // ========================= bird view =========================
   std::vector<cv::Point2f> src_points = {
-      {500.0f, 400.0f},
-      {780.0f, 400.0f},
-      {200.0f, 700.0f},
-      {1080.0f, 700.0f}};
+      {distort_L_top_x,   distort_L_top_y},
+      {distort_R_top_x,   distort_R_top_y},
+      {distort_L_under_x, distort_L_under_y},
+      {distort_R_under_x, distort_R_under_y}};
 
-  cv::Mat bird_view = vision_tune::utils::make_bird_view(raw_mat, src_points, 640, 480);
+  std::vector<cv::Point2f> dst_points = {
+      {flat_L_top_x,   flat_L_top_y},
+      {flat_R_top_x,   flat_R_top_y},
+      {flat_L_under_x, flat_L_under_y},
+      {flat_R_under_x, flat_R_under_y}};
+
+  cv::Mat bird_view = vision_tune::utils::make_bird_view(raw_mat, src_points, dst_points, 320, 240);
 
   if (bird_view.empty())
   {

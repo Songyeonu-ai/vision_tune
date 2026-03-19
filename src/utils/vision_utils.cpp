@@ -6,19 +6,14 @@ namespace vision_tune::utils
   cv::Mat make_bird_view(
       const cv::Mat &frame,
       const std::vector<cv::Point2f> &src_points,
+      const std::vector<cv::Point2f> &dst_points,
       int output_width,
       int output_height)
   {
-    if (frame.empty() || src_points.size() != 4)
+    if (frame.empty() || src_points.size() != 4 || dst_points.size() != 4)
     {
       return cv::Mat();
     }
-
-    std::vector<cv::Point2f> dst_points = {
-        {0.0f, 0.0f},
-        {static_cast<float>(output_width - 1), 0.0f},
-        {0.0f, static_cast<float>(output_height - 1)},
-        {static_cast<float>(output_width - 1), static_cast<float>(output_height - 1)}};
 
     cv::Mat transform_matrix = cv::getPerspectiveTransform(src_points, dst_points);
 

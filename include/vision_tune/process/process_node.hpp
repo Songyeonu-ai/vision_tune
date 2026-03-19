@@ -57,6 +57,27 @@ private:
   std::string tuning_topic;
   std::string bird_image_topic;
   double node_hz_ = 30.0;
+
+  // 사다리꼴 원본 좌표 (feed 640x480 기준)
+float distort_L_top_x = 160.0;
+float distort_L_top_y = 333.3;   
+float distort_R_top_x = 640.0 - distort_L_top_x;
+float distort_R_top_y = distort_L_top_y;
+float distort_L_under_x = 72.0;
+float distort_L_under_y = 480.0;  
+float distort_R_under_x = 640.0 - distort_L_under_x;
+float distort_R_under_y = distort_L_under_y;
+
+// 직사각형 목적지 좌표 (이미지 전체 320x240)
+float flat_L_top_x = 60.0;
+float flat_L_top_y = 0.0;
+float flat_R_top_x = 320 - flat_L_top_x;
+float flat_R_top_y = 0.0;
+float flat_L_under_x = 60.0;
+float flat_L_under_y = 240.0;
+float flat_R_under_x = 320 - flat_L_under_x;
+float flat_R_under_y = 240.0;     
+
 };
 
 #endif
