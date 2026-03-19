@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1071</width>
+    <height>940</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1051</width>
+      <height>881</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QSlider" name="slider_h_low">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>660</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_h_high">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>720</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_s_low">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>660</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_s_high">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>720</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_v_low">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>660</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_v_high">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>720</y>
+        <width>256</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_detected">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>detection</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_center_x">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>0</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>c_X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_center_y">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>0</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>c_y</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_area">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>0</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>area</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_h_low">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>660</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_h_high">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>720</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_s_low">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>660</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_s_high">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>720</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_v_low">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>660</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_v_high">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>720</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_save">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>800</y>
+        <width>361</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save setting</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_load">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>800</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>load setting</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_set0">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>800</y>
+        <width>341</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>set 0</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_yolo">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>0</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Yolo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>640</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>H low</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>700</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>H high</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>640</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>S low</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>700</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>S high</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>640</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>V high</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>700</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>V high</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RAW</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>30</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RED</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>30</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>BLUE</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_red">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>480</y>
+        <width>112</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RED</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_blue">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>440</y>
+        <width>112</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>BLUE</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_line">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>400</y>
+        <width>112</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LINE</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_raw">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(154, 153, 150);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_red">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>60</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(154, 153, 150);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_blue">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>60</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(154, 153, 150);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_line">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>360</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(154, 153, 150);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>330</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LINE</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>330</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>BIRD</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_bird">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>360</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(154, 153, 150);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1071</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
