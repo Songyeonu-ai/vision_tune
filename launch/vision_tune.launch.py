@@ -38,12 +38,18 @@ def generate_launch_description():
         parameters=[config_dir, info_dir]
     )
 
+    model_xml = os.path.join(
+        get_package_share_directory('vision_tune'),
+        'model',
+        'best.xml'
+    )
+
     process_node = Node(
         package='vision_tune',
         executable='process_node',
         name='process_node',
         output='screen',
-        parameters=[param_dir]
+        parameters=[param_dir, {'model_xml': model_xml}]
     )
 
     ui_node = Node(

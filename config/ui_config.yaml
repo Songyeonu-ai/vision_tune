@@ -45,6 +45,11 @@ process_node:
     bird_img_w: 320
     bird_img_h: 240
 
+    ROBOT_HEIGHT: 555.0 # 490 #475 #505 #545 #755 #544 ##로봇 높이 (mm)
+    TILT_L: 0         #65.0 #75.0 //축간 거리
+    camera_info_topic: "/camera1/info"
+    pan_tilt_status_topic: "/camera1/pan_tilt_status"
+    
 pan_tilt_camera_node_camera1: #d만들어뒀는데 지금은 안쓰는중
   ros__parameters:
     node_hz: 15.0

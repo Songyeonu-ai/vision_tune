@@ -28,6 +28,7 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(rosidl_typesupport_cpp REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 find_package(OpenCV REQUIRED)
+find_package(OpenVINO REQUIRED)
 find_package(yaml-cpp REQUIRED) #yaml 파일로 save하기 위함
 
 include_directories(
@@ -48,8 +49,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/PanTilt.msg"
   "msg/PanTiltMsgs.msg"
   "msg/PanTiltStatusMsgs.msg"
-  "msg/BoundingBox.msg"
-  DEPENDENCIES std_msgs sensor_msgs
+DEPENDENCIES std_msgs sensor_msgs
 )
 
 rosidl_get_typesupport_target(cpp_typesupport_target
@@ -104,6 +104,7 @@ target_link_libraries(process_node
   vision_tune_vision_utils
   ${cpp_typesupport_target}
   ${OpenCV_LIBS}
+  openvino::runtime
 )
 
 # =========================
@@ -140,6 +141,11 @@ target_link_libraries(ui_node
 )
 
 install(TARGETS
+  vision_tune_vision_utils
+  DESTINATION lib
+)
+
+install(TARGETS
   pan_tilt_camera_node
   process_node
   ui_node
@@ -147,6 +153,10 @@ install(TARGETS
 )
 
 install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY model
   DESTINATION share/${PROJECT_NAME}
 )
 
