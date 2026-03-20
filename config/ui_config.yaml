@@ -24,7 +24,7 @@ ui_node:
         v_high: 0
     topic:
       result_topic: "/vision/result"
-      raw_image_topic: "/camera1/camera/compressed_image"
+      raw_image_topic: "/vision/yolo_image"
       result_image_topic: "/vision/result_image"
       tuning_topic: "/vision/tuning"
       brid_image_topic: "/vision/bird_image"
@@ -39,6 +39,7 @@ process_node:
       result_image_topic: "/vision/result_image"
       tuning_topic: "/vision/tuning"
       brid_image_topic: "/vision/bird_image"
+      yolo_image_topic: "/vision/yolo_image"
     node_hz: 30.0
     img_w: 640
     img_h: 480

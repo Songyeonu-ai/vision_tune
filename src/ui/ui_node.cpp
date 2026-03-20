@@ -49,7 +49,7 @@ UiNode::UiNode(MainWindow *window)
 void UiNode::declare_parameters() // ui_config.yaml
 {
   declare_parameter<std::string>("topic.result_topic", "/vision/result");
-  declare_parameter<std::string>("topic.raw_image_topic", "/camera1/camera/compressed_image");
+  declare_parameter<std::string>("topic.raw_image_topic", "/vision/yolo_image");
   declare_parameter<std::string>("topic.result_image_topic", "/vision/result_image");
   declare_parameter<std::string>("topic.tuning_topic", "/vision/tuning");
   declare_parameter<std::string>("topic.bird_image_topic", "/vision/bird_image");

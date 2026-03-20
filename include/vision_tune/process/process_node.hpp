@@ -64,6 +64,7 @@ private:
   rclcpp::Publisher<vision_tune::msg::ProcessResult>::SharedPtr result_pub_;
   rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr result_image_pub_;
   rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr bird_image_pub_;
+  rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr yolo_image_pub_;
 
   rclcpp::TimerBase::SharedPtr timer_;
 
@@ -80,6 +81,7 @@ private:
   std::string bird_image_topic;
   std::string camera_info_topic_;
   std::string pan_tilt_status_topic_;
+  std::string yolo_image_topic;
   double node_hz_ = 30.0;
 
   // 거리 추정용 카메라 파라미터
