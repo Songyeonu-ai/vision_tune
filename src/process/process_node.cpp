@@ -229,44 +229,43 @@ void ProcessNode::process_tick()
   cv::cvtColor(mask, result_mat, cv::COLOR_GRAY2BGR);
 
   vision_tune::msg::ProcessResult result_msg;
-  result_msg.detected = detection.detected;
-  result_msg.center_x = detection.center_x;
-  result_msg.center_y = detection.center_y;
-  result_msg.area = detection.area;
+  if (detection.detected)
+  {
+    result_msg.detected = true;
+    result_msg.center_x.push_back(detection.center_x);
+    result_msg.center_y.push_back(detection.center_y);
+    result_msg.area.push_back(detection.area);
+  }
 
   // ========================= YOLO obstacle detection =========================
   auto obstacles = detect_obstacle(raw_mat);
   auto yolo_mat = raw_mat.clone();
-  float best_score = 0.0f;
+  if (!obstacles.empty())
+    result_msg.detected = true;
   for (const auto &obs : obstacles)
   {
     cv::rectangle(yolo_mat, obs.bbox, COLORS.at(0), 2);
-    if (obs.score > best_score)
+    result_msg.center_x.push_back(obs.center_x);
+    result_msg.center_y.push_back(obs.center_y);
+    result_msg.area.push_back(obs.area);
+    result_msg.score.push_back(obs.score);
+    result_msg.x1.push_back(obs.bbox.x);
+    result_msg.y1.push_back(obs.bbox.y);
+    result_msg.x2.push_back(obs.bbox.x + obs.bbox.width);
+    result_msg.y2.push_back(obs.bbox.y + obs.bbox.height);
+
+    // ========================= 거리 추정 =========================
+    if (camera_initialized_)
     {
-      best_score = obs.score;
-      result_msg.detected = true;
-      result_msg.center_x = obs.center_x;
-      result_msg.center_y = obs.center_y;
-      result_msg.area = obs.area;
-      result_msg.score = obs.score;
-      result_msg.x1 = obs.bbox.x;
-      result_msg.y1 = obs.bbox.y;
-      result_msg.x2 = obs.bbox.x + obs.bbox.width;
-      result_msg.y2 = obs.bbox.y + obs.bbox.height;
+      cv::Point2d pixel_pt(obs.center_x, obs.center_y);
+      auto pos = vision_tune::Cal_utils::calcObjectDistance(
+          cam_tilt_, cam_height_, cam_focal_, cam_principal_, pixel_pt);
+      result_msg.distance.push_back(pos.dist);
+      result_msg.theta.push_back(pos.theta);
     }
+    // ==========================================================
   }
   // ===========================================================================
-
-  // ========================= 거리 추정 =========================
-  if (result_msg.detected && camera_initialized_)
-  {
-    cv::Point2d pixel_pt(result_msg.center_x, result_msg.center_y);
-    auto pos = vision_tune::Cal_utils::calcObjectDistance(
-        cam_tilt_, cam_height_, cam_focal_, cam_principal_, pixel_pt);
-    result_msg.distance = pos.dist;
-    result_msg.theta = pos.theta;
-  }
-  // ==========================================================
 
   // ========================= publish =========================
   auto yolo_img =

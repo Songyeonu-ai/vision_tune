@@ -169,17 +169,22 @@ void MainWindow::apply_ui_tick()
 
   if (pending_result_msg_dirty_)
   {
-    bool detected   = pending_result_msg_.detected;
-    float center_x  = pending_result_msg_.center_x;
-    float center_y  = pending_result_msg_.center_y;
-    float area      = pending_result_msg_.area;
-    float score     = pending_result_msg_.score;
-    int x1          = pending_result_msg_.x1;
-    int y1          = pending_result_msg_.y1;
-    int x2          = pending_result_msg_.x2;
-    int y2          = pending_result_msg_.y2;
+    bool detected  = pending_result_msg_.detected;
+    int count      = static_cast<int>(pending_result_msg_.center_x.size());
+    float center_x = 0.0f;
+    float center_y = 0.0f;
+    float area     = 0.0f;
+    if (count > 0)
+    {
+      center_x = pending_result_msg_.center_x[0];
+      center_y = pending_result_msg_.center_y[0];
+      area     = pending_result_msg_.area[0];
+    }
 
-    ui->label_detected->setText(detected ? "true" : "false");
+    if (detected)
+      ui->label_detected->setText("true");
+    else
+      ui->label_detected->setText("false");
     ui->label_center_x->setText(QString::number(center_x));
     ui->label_center_y->setText(QString::number(center_y));
     ui->label_area->setText(QString::number(area));
